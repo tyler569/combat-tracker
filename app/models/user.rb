@@ -5,4 +5,7 @@ class User < ApplicationRecord
   has_many :combats
 
   validates :username, presence: true
+
+  class NotAuthorized < Exception
+  end
 end

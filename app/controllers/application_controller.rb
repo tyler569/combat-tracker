@@ -6,5 +6,7 @@ class ApplicationController < ActionController::Base
   def verify_login
     @session = Session.find(session[:login_id].to_i)
     @user = @session.user
+  rescue ActiveRecord::RecordNotFound
+    raise User::NotAuthorized
   end
 end

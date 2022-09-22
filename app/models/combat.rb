@@ -3,6 +3,8 @@ class Combat < ApplicationRecord
 
   has_many :characters
 
+  after_initialize :set_defaults
+
   def not_acted
     characters.filter { |c| !c.acted }
   end
@@ -44,10 +46,17 @@ class Combat < ApplicationRecord
 
   def to_json
     {
+      id: id,
       name: name,
       players: players,
       initiative: initiative,
       characters: characters,
     }
+  end
+
+  private
+
+  def set_defaults
+    self.round ||= 0
   end
 end

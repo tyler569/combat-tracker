@@ -1,4 +1,4 @@
-class Api::V1::CombatsController < ApplicationController
+class Api::V1::CombatsController < Api::ApiController
   before_action :set_combat, only: [:show, :edit, :update, :destroy]
   
   def index
@@ -23,6 +23,7 @@ class Api::V1::CombatsController < ApplicationController
 
   def create
     @combat = Combat.create(combat_params)
+    @combat.user = @user
 
     if @combat.save
       render json: @combat.to_json

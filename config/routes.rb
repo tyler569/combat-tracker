@@ -3,11 +3,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get 'users/index'
+      get 'users/:id', to: 'users#show'
       post 'users/create'
       delete 'users/:id', to: 'users#destroy'
 
-      get 'combats/index'
+      # get 'combats/index'
+      get 'combats/:id', to: 'combats#show'
       post 'combats/create'
       delete 'combats/:id', to: 'combats#destroy'
 
